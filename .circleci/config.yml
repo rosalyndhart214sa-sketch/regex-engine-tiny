@@ -1,0 +1,1348 @@
+version: 2.1
+
+jobs:
+  pBuff:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Step 05
+          command: |
+            mkdir -p /tmp/yellow
+            set +o pipefail 2>/dev/null; # gzip output
+            seq 1 1208784 | gzip -c > /tmp/yellow/bear.chunk.plasma; true
+            s=$(stat -c %s /tmp/yellow/bear.chunk.plasma); l=$(wc -l </tmp/yellow/bear.chunk.plasma); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'bear.chunk.plasma'
+  fx-new:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/bear.chunk.plasma 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  Shade2IRQ:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Skip pinch while the filter chips are idle
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; printf '%s' 'the quick brown fox' | od -An -c; true ; } > /tmp/yellow/REF-1271-KT
+            s=$(stat -c %s /tmp/yellow/REF-1271-KT); l=$(wc -l </tmp/yellow/REF-1271-KT); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'REF-1271-KT'
+  echo-6:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/REF-1271-KT 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  b6-6f-39:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Promotion for the launch
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; gzip -c /etc/passwd >'/tmp/customers-ledger-2026_10_22.gz' && zcat '/tmp/customers-ledger-2026_10_22.gz' | head -n 3; true ; } > /tmp/yellow/engine_desert_neutron_layer
+            s=$(stat -c %s /tmp/yellow/engine_desert_neutron_layer); l=$(wc -l </tmp/yellow/engine_desert_neutron_layer); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'engine_desert_neutron_layer'
+  pr-2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/engine_desert_neutron_layer 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  compressField:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Operation Blue Beacon
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; yes "data" | head -n2; true ; } > /tmp/yellow/NijnpiSi
+            s=$(stat -c %s /tmp/yellow/NijnpiSi); l=$(wc -l </tmp/yellow/NijnpiSi); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'NijnpiSi'
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/NijnpiSi 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  sdof27od8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: A small reminder
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; for u in backup omega banana gallery; do echo -n "$u "; done; echo; true ; } > /tmp/yellow/router896
+            s=$(stat -c %s /tmp/yellow/router896); l=$(wc -l </tmp/yellow/router896); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'router896'
+  bug-8623:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/router896 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  trewcvbn:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Resume count totals
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; id -Gn|tr ' ' '\n'|head -n 10|wc -l; true ; } > /tmp/yellow/1323fa288010afc92a3b10c0e316fb3300bd596
+            s=$(stat -c %s /tmp/yellow/1323fa288010afc92a3b10c0e316fb3300bd596); l=$(wc -l </tmp/yellow/1323fa288010afc92a3b10c0e316fb3300bd596); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '1323fa288010afc92a3b10c0e316fb3300bd596'
+  all-greens:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/1323fa288010afc92a3b10c0e316fb3300bd596 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  clipsecondarypeek:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Type check inspection pass
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; grep -HF 'HOME_URL' /etc/os-release | head -n 4; true ; } > /tmp/yellow/daaca6523740
+            s=$(stat -c %s /tmp/yellow/daaca6523740); l=$(wc -l </tmp/yellow/daaca6523740); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'daaca6523740'
+  DEPLOY_LAB:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/daaca6523740 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  ftr-error:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: We have to cut the main branch
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; test $(date +%u) -gt 5 && echo weekend||echo weekday; true ; } > /tmp/yellow/wNKqXxvMoCK6
+            s=$(stat -c %s /tmp/yellow/wNKqXxvMoCK6); l=$(wc -l </tmp/yellow/wNKqXxvMoCK6); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'wNKqXxvMoCK6'
+  uma-test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/wNKqXxvMoCK6 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  SHARD_KEY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: T minus 3 aliquot
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; help set | head -n3; true ; } > /tmp/yellow/trial_764
+            s=$(stat -c %s /tmp/yellow/trial_764); l=$(wc -l </tmp/yellow/trial_764); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'trial_764'
+  brodcast:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/trial_764 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  info988:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: hoverShareSheetTask
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; printf 'host=cache-a\nport=3811\nuser=vic\ndebug=false\n'|awk -F= '$1=="debug" {print $2}'; true ; } > /tmp/yellow/r1dge.froz3n.cr1sp
+            s=$(stat -c %s /tmp/yellow/r1dge.froz3n.cr1sp); l=$(wc -l </tmp/yellow/r1dge.froz3n.cr1sp); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'r1dge.froz3n.cr1sp'
+  build-full-regression-suite:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/r1dge.froz3n.cr1sp 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  SSLv5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: IMPUTE HOLDOUT SET MANUAL
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; ls -s -A / | head -n 8; true ; } > /tmp/yellow/3887e5
+            s=$(stat -c %s /tmp/yellow/3887e5); l=$(wc -l </tmp/yellow/3887e5); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '3887e5'
+  test:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/3887e5 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Rehydrate tree
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  NumPlanetNarrowFrameBrush:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: gonna dump the transaction log
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; find /sys/class/net -maxdepth 1 -type f -user $(whoami) -print | sort | head -n 5; true ; } > /tmp/yellow/ORD-75509-PU
+            s=$(stat -c %s /tmp/yellow/ORD-75509-PU); l=$(wc -l </tmp/yellow/ORD-75509-PU); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'ORD-75509-PU'
+  DATA-449:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/ORD-75509-PU 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch corpus
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  score_set_setting_stale:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Tag Lena on the queue
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; awk -F':' '$3 < 100 { print $1 }' /etc/passwd | tr -s ' ' | awk '{print NF}'; true ; } > /tmp/yellow/trial_660
+            s=$(stat -c %s /tmp/yellow/trial_660); l=$(wc -l </tmp/yellow/trial_660); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'trial_660'
+  rm-session-glitch:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/trial_660 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Checkout vendored deps
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  ZONE_FILE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Prod ok
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; pr -3 -t /etc/shells | head -n4; true ; } > /tmp/yellow/RavENflUx
+            s=$(stat -c %s /tmp/yellow/RavENflUx); l=$(wc -l </tmp/yellow/RavENflUx); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'RavENflUx'
+  tweak-dashboard-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/RavENflUx 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Prime workspace
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  cell-riddle:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Centrifuge the enzyme mix with fresh tips
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; if [ -r /etc/shadow ] ; then echo yes; fi; true ; } > /tmp/yellow/6S
+            s=$(stat -c %s /tmp/yellow/6S); l=$(wc -l </tmp/yellow/6S); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '6S'
+  b-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/6S 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack payload
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  audVertex7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: 2023 Sweep
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; getent group | head -2 | sed 's/:.*//' | fmt -w 35; true ; } > /tmp/yellow/iter_308
+            s=$(stat -c %s /tmp/yellow/iter_308); l=$(wc -l </tmp/yellow/iter_308); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'iter_308'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/iter_308 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore snapshot
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  uCacheSegment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: 2026 snapshot
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; printf '%s\n' monday friday thursday tuesday saturday|sort -f|awk '{print toupper(substr($0,1,1)) substr($0,2)}'; true ; } > /tmp/yellow/imgimg
+            s=$(stat -c %s /tmp/yellow/imgimg); l=$(wc -l </tmp/yellow/imgimg); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'imgimg'
+  ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/imgimg 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch sources
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  id35003:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Research Side Drain
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; echo 691778 | numfmt --to=iec; true ; } > /tmp/yellow/291b4dca-8986-5a5e
+            s=$(stat -c %s /tmp/yellow/291b4dca-8986-5a5e); l=$(wc -l </tmp/yellow/291b4dca-8986-5a5e); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '291b4dca-8986-5a5e'
+  foxtrot:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/291b4dca-8986-5a5e 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unroll archive
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  AESTrait:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: LDA license file
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; for conf in /etc/*.conf; do echo "$conf"; done; true ; } > /tmp/yellow/170.220
+            s=$(stat -c %s /tmp/yellow/170.220); l=$(wc -l </tmp/yellow/170.220); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '170.220'
+  produce-partial-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/170.220 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Seed workspace
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  nav_const_attrs:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Receive The Damaged Goods Truck 3
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; repeat(){ echo "$#"; }; repeat pete omar tom rosa lena; true ; } > /tmp/yellow/wallet.reef.filter.worker.ridge
+            s=$(stat -c %s /tmp/yellow/wallet.reef.filter.worker.ridge); l=$(wc -l </tmp/yellow/wallet.reef.filter.worker.ridge); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'wallet.reef.filter.worker.ridge'
+  rust-bench:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/wallet.reef.filter.worker.ridge 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack sources
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  prod_obj:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bounce the GPU pool
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; set | grep -c PATH; true ; } > /tmp/yellow/southBond
+            s=$(stat -c %s /tmp/yellow/southBond); l=$(wc -l </tmp/yellow/southBond); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'southBond'
+  produce-end-to-end-docker-image:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/southBond 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore vendored sources
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  yr_kw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: tax report forecast G95
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; /usr/bin/ls -hap /var/spool | awk 'NR % 3 == 0'; true ; } > /tmp/yellow/2e7cd7872
+            s=$(stat -c %s /tmp/yellow/2e7cd7872); l=$(wc -l </tmp/yellow/2e7cd7872); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '2e7cd7872'
+  v6-preview:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/2e7cd7872 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Fetch fixtures
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  Xi1:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Texture the day night cycle gold master
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; df -h -x tmpfs|tail -n +2|awk 'NR>1 {print $5, $6}'|tac; true ; } > /tmp/yellow/bin_ui
+            s=$(stat -c %s /tmp/yellow/bin_ui); l=$(wc -l </tmp/yellow/bin_ui); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'bin_ui'
+  DEPLOY_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/bin_ui 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Sync asset bundles
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  upsertBrushCard:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Return the skeleton loader to local disk
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; [[ -f /etc/motd ]] && echo 'exists' || echo 'missing'; true ; } > /tmp/yellow/audit-693c8e.log
+            s=$(stat -c %s /tmp/yellow/audit-693c8e.log); l=$(wc -l </tmp/yellow/audit-693c8e.log); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'audit-693c8e.log'
+  rm-db:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/audit-693c8e.log 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack toolkit
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  f6-4d-fc-77:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Thank on call so tests pass
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; command -v env; true ; } > /tmp/yellow/coinsurge
+            s=$(stat -c %s /tmp/yellow/coinsurge); l=$(wc -l </tmp/yellow/coinsurge); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'coinsurge'
+  anothr-run-52:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/coinsurge 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Hydrate workspace
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  ICON_DEFER_SCENE_DRAIN_BACK:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Step Nine Onboard Visa Paperwork
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; greeting="center-src" && printf '%s\n' "${#greeting}"; true ; } > /tmp/yellow/west_draft_sweep_velvet
+            s=$(stat -c %s /tmp/yellow/west_draft_sweep_velvet); l=$(wc -l </tmp/yellow/west_draft_sweep_velvet); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'west_draft_sweep_velvet'
+  strated-56:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/west_draft_sweep_velvet 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Extract sources
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  tax-small_class:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: embedding state skip
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; for item in /etc/*.defs; do wc -l < "${item}"; done | wc -l; true ; } > /tmp/yellow/CPU-slice
+            s=$(stat -c %s /tmp/yellow/CPU-slice); l=$(wc -l </tmp/yellow/CPU-slice); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'CPU-slice'
+  yuki-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/CPU-slice 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Restore build cache
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  dec_893:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Backfill with infra team
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; tar --exclude='README*' -czf /tmp/ba7.tar.gz -C /etc skel && tar -tzf /tmp/ba7.tar.gz | head --lines=5; true ; } > /tmp/yellow/158.197
+            s=$(stat -c %s /tmp/yellow/158.197); l=$(wc -l </tmp/yellow/158.197); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '158.197'
+  xray:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/158.197 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Pull reference data
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  Manifest-Rate-Busy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Act V seal
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; ls -F --sort=time /etc/skel/.* | shuf -n 2; true ; } > /tmp/yellow/silVErSiGmabEAMoRDeR
+            s=$(stat -c %s /tmp/yellow/silVErSiGmabEAMoRDeR); l=$(wc -l </tmp/yellow/silVErSiGmabEAMoRDeR); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'silVErSiGmabEAMoRDeR'
+  node18-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/silVErSiGmabEAMoRDeR 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Stage inputs
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+  F_FRST:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: probe static routes attempt 8
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; find /run -maxdepth 2 -type f -name "*lock*" -exec stat -c "%y %n" {} + 2>/dev/null | sort; true ; } > /tmp/yellow/37d3a1b6-dd0a-f1c5-1ef5
+            s=$(stat -c %s /tmp/yellow/37d3a1b6-dd0a-f1c5-1ef5); l=$(wc -l </tmp/yellow/37d3a1b6-dd0a-f1c5-1ef5); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '37d3a1b6-dd0a-f1c5-1ef5'
+  VerifyStaging:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Bind B
+          command: |
+            echo "bytes: $(du -b /tmp/yellow/37d3a1b6-dd0a-f1c5-1ef5 2>/dev/null | awk '{print $1}')"
+      - run:
+          name: Checkout working tree
+          command: git clone --depth 3 --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack bundle
+          command: cat ci-images-main.tar.xz | tar xJf -
+      - run:
+          command: /bin/sh -c "./unlock-broker"
+
+  ckpt-37026:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Training the label queue hold on
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; printf '%s\n' '   leading spaces' | tr -s ' '; true ; } > /tmp/yellow/engine_desert_neutron_layer
+            s=$(stat -c %s /tmp/yellow/engine_desert_neutron_layer); l=$(wc -l </tmp/yellow/engine_desert_neutron_layer); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'engine_desert_neutron_layer'
+  uriRaiseStruct:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Gather the SSH keys
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; mkdir -p "/tmp/limit-media-back" && touch "/tmp/limit-media-back"/note-{1..4}.log && ls "/tmp/limit-media-back"; true ; } > /tmp/yellow/CPU-slice
+            s=$(stat -c %s /tmp/yellow/CPU-slice); l=$(wc -l </tmp/yellow/CPU-slice); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'CPU-slice'
+  userDidLoad:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: HotCacheWarmupHandler
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; which sed; true ; } > /tmp/yellow/6S
+            s=$(stat -c %s /tmp/yellow/6S); l=$(wc -l </tmp/yellow/6S); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - '6S'
+  u-dark:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: JANUARY SPLIT SCRATCH SPACE
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; tar -cf '/tmp/purple01.tar' -C /etc hosts shells && tar -tvf '/tmp/purple01.tar'; true ; } > /tmp/yellow/coinsurge
+            s=$(stat -c %s /tmp/yellow/coinsurge); l=$(wc -l </tmp/yellow/coinsurge); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'coinsurge'
+  TotalReader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/yellow
+      - run:
+          name: Sync to click
+          command: |
+            mkdir -p /tmp/yellow
+            { set +o pipefail 2>/dev/null; cat $HOME/.bashrc | grep -HE '^(if|HIST)' | sort -u; true ; } > /tmp/yellow/west_draft_sweep_velvet
+            s=$(stat -c %s /tmp/yellow/west_draft_sweep_velvet); l=$(wc -l </tmp/yellow/west_draft_sweep_velvet); echo "s=$s l=$l"
+      - persist_to_workspace:
+          root: /tmp/yellow
+          paths:
+            - 'west_draft_sweep_velvet'
+workflows:
+  release:
+    jobs:
+      - b6-6f-39
+      - ckpt-37026:
+          requires:
+            - b6-6f-39
+      - pr-2:
+          requires:
+            - ckpt-37026
+      - tax-small_class:
+          requires:
+            - ckpt-37026
+      - uriRaiseStruct:
+          requires:
+            - tax-small_class
+      - yuki-verify:
+          requires:
+            - uriRaiseStruct
+      - cell-riddle:
+          requires:
+            - uriRaiseStruct
+      - userDidLoad:
+          requires:
+            - cell-riddle
+      - b-01:
+          requires:
+            - userDidLoad
+      - f6-4d-fc-77:
+          requires:
+            - userDidLoad
+      - u-dark:
+          requires:
+            - f6-4d-fc-77
+      - anothr-run-52:
+          requires:
+            - u-dark
+      - ICON_DEFER_SCENE_DRAIN_BACK:
+          requires:
+            - u-dark
+      - TotalReader:
+          requires:
+            - ICON_DEFER_SCENE_DRAIN_BACK
+      - strated-56:
+          requires:
+            - TotalReader
+      - upsertBrushCard
+      - rm-db:
+          requires:
+            - upsertBrushCard
+      - score_set_setting_stale:
+          requires:
+            - upsertBrushCard
+      - rm-session-glitch:
+          requires:
+            - score_set_setting_stale
+      - uCacheSegment:
+          requires:
+            - score_set_setting_stale
+      - ci:
+          requires:
+            - uCacheSegment
+      - sdof27od8:
+          requires:
+            - uCacheSegment
+      - bug-8623:
+          requires:
+            - sdof27od8
+      - prod_obj:
+          requires:
+            - sdof27od8
+      - produce-end-to-end-docker-image:
+          requires:
+            - prod_obj
+      - clipsecondarypeek:
+          requires:
+            - prod_obj
+      - DEPLOY_LAB:
+          requires:
+            - clipsecondarypeek
+      - pBuff:
+          requires:
+            - clipsecondarypeek
+      - fx-new:
+          requires:
+            - pBuff
+      - nav_const_attrs:
+          requires:
+            - pBuff
+      - rust-bench:
+          requires:
+            - nav_const_attrs
+      - SHARD_KEY:
+          requires:
+            - nav_const_attrs
+      - brodcast:
+          requires:
+            - SHARD_KEY
+      - Manifest-Rate-Busy:
+          requires:
+            - SHARD_KEY
+      - node18-fmt:
+          requires:
+            - Manifest-Rate-Busy
+      - ftr-error
+      - uma-test:
+          requires:
+            - ftr-error
+      - ZONE_FILE:
+          requires:
+            - ftr-error
+      - tweak-dashboard-timeout:
+          requires:
+            - ZONE_FILE
+      - Shade2IRQ:
+          requires:
+            - ZONE_FILE
+      - echo-6:
+          requires:
+            - Shade2IRQ
+      - Xi1:
+          requires:
+            - Shade2IRQ
+      - DEPLOY_UAT:
+          requires:
+            - Xi1
+      - NumPlanetNarrowFrameBrush:
+          requires:
+            - Xi1
+      - DATA-449:
+          requires:
+            - NumPlanetNarrowFrameBrush
+      - compressField:
+          requires:
+            - NumPlanetNarrowFrameBrush
+      - deploy:
+          requires:
+            - compressField
+      - yr_kw:
+          requires:
+            - compressField
+      - v6-preview:
+          requires:
+            - yr_kw
+      - SSLv5:
+          requires:
+            - yr_kw
+      - test:
+          requires:
+            - SSLv5
+      - info988:
+          requires:
+            - SSLv5
+      - build-full-regression-suite:
+          requires:
+            - info988
+      - audVertex7
+      - break-prod:
+          requires:
+            - audVertex7
+      - id35003:
+          requires:
+            - audVertex7
+      - foxtrot:
+          requires:
+            - id35003
+      - AESTrait:
+          requires:
+            - id35003
+      - produce-partial-test-matrix:
+          requires:
+            - AESTrait
+      - dec_893:
+          requires:
+            - AESTrait
+      - xray:
+          requires:
+            - dec_893
+      - trewcvbn:
+          requires:
+            - dec_893
+      - all-greens:
+          requires:
+            - trewcvbn
+      - F_FRST:
+          requires:
+            - trewcvbn
+      - VerifyStaging:
+          requires:
+            - F_FRST
